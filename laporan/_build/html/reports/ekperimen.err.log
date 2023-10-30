@@ -1,0 +1,102 @@
+Traceback (most recent call last):
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python310\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python310\lib\site-packages\nbclient\client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python310\lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python310\lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python310\lib\site-packages\nbclient\client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python310\lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\asus\AppData\Local\Programs\Python\Python310\lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from sklearn.preprocessing import StandardScaler
+# Baca file CSV
+dn = pd.read_csv("emosi2.csv")
+# Tentukan kolom yang akan distandarisasi
+kolom = ['ZCR Mean', 'ZCR Median', 'ZCR Std Dev', 'ZCR Kurtosis', 'ZCR Skew', 'RMSE', 'RMSE Median', 'RMSE Std Dev', 'RMSE Kurtosis', 'RMSE Skew']
+# Inisialisasi StandardScaler
+scaler = StandardScaler()
+# Lakukan standarisasi pada kolom yang telah ditentukan
+dn[kolom] = scaler.fit_transform(dn[kolom])
+# Simpan DataFrame yang telah distandarisasi ke dalam file CSV baru
+dn.to_csv("emosi2normalisasi.csv", index=False)
+
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mValueError[0m                                Traceback (most recent call last)
+Cell [1;32mIn[9], line 9[0m
+[0;32m      7[0m scaler [38;5;241m=[39m StandardScaler()
+[0;32m      8[0m [38;5;66;03m# Lakukan standarisasi pada kolom yang telah ditentukan[39;00m
+[1;32m----> 9[0m dn[kolom] [38;5;241m=[39m [43mscaler[49m[38;5;241;43m.[39;49m[43mfit_transform[49m[43m([49m[43mdn[49m[43m[[49m[43mkolom[49m[43m][49m[43m)[49m
+[0;32m     10[0m [38;5;66;03m# Simpan DataFrame yang telah distandarisasi ke dalam file CSV baru[39;00m
+[0;32m     11[0m dn[38;5;241m.[39mto_csv([38;5;124m"[39m[38;5;124memosi2normalisasi.csv[39m[38;5;124m"[39m, index[38;5;241m=[39m[38;5;28;01mFalse[39;00m)
+
+File [1;32m~\AppData\Local\Programs\Python\Python310\lib\site-packages\sklearn\utils\_set_output.py:140[0m, in [0;36m_wrap_method_output.<locals>.wrapped[1;34m(self, X, *args, **kwargs)[0m
+[0;32m    138[0m [38;5;129m@wraps[39m(f)
+[0;32m    139[0m [38;5;28;01mdef[39;00m [38;5;21mwrapped[39m([38;5;28mself[39m, X, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[1;32m--> 140[0m     data_to_wrap [38;5;241m=[39m f([38;5;28mself[39m, X, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+[0;32m    141[0m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(data_to_wrap, [38;5;28mtuple[39m):
+[0;32m    142[0m         [38;5;66;03m# only wrap the first output for cross decomposition[39;00m
+[0;32m    143[0m         [38;5;28;01mreturn[39;00m (
+[0;32m    144[0m             _wrap_data_with_container(method, data_to_wrap[[38;5;241m0[39m], X, [38;5;28mself[39m),
+[0;32m    145[0m             [38;5;241m*[39mdata_to_wrap[[38;5;241m1[39m:],
+[0;32m    146[0m         )
+
+File [1;32m~\AppData\Local\Programs\Python\Python310\lib\site-packages\sklearn\base.py:878[0m, in [0;36mTransformerMixin.fit_transform[1;34m(self, X, y, **fit_params)[0m
+[0;32m    874[0m [38;5;66;03m# non-optimized default implementation; override when a better[39;00m
+[0;32m    875[0m [38;5;66;03m# method is possible for a given clustering algorithm[39;00m
+[0;32m    876[0m [38;5;28;01mif[39;00m y [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[0;32m    877[0m     [38;5;66;03m# fit method of arity 1 (unsupervised transformation)[39;00m
+[1;32m--> 878[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39mfit(X, [38;5;241m*[39m[38;5;241m*[39mfit_params)[38;5;241m.[39mtransform(X)
+[0;32m    879[0m [38;5;28;01melse[39;00m:
+[0;32m    880[0m     [38;5;66;03m# fit method of arity 2 (supervised transformation)[39;00m
+[0;32m    881[0m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39mfit(X, y, [38;5;241m*[39m[38;5;241m*[39mfit_params)[38;5;241m.[39mtransform(X)
+
+File [1;32m~\AppData\Local\Programs\Python\Python310\lib\site-packages\sklearn\preprocessing\_data.py:824[0m, in [0;36mStandardScaler.fit[1;34m(self, X, y, sample_weight)[0m
+[0;32m    822[0m [38;5;66;03m# Reset internal state before fitting[39;00m
+[0;32m    823[0m [38;5;28mself[39m[38;5;241m.[39m_reset()
+[1;32m--> 824[0m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mpartial_fit[49m[43m([49m[43mX[49m[43m,[49m[43m [49m[43my[49m[43m,[49m[43m [49m[43msample_weight[49m[43m)[49m
+
+File [1;32m~\AppData\Local\Programs\Python\Python310\lib\site-packages\sklearn\preprocessing\_data.py:861[0m, in [0;36mStandardScaler.partial_fit[1;34m(self, X, y, sample_weight)[0m
+[0;32m    858[0m [38;5;28mself[39m[38;5;241m.[39m_validate_params()
+[0;32m    860[0m first_call [38;5;241m=[39m [38;5;129;01mnot[39;00m [38;5;28mhasattr[39m([38;5;28mself[39m, [38;5;124m"[39m[38;5;124mn_samples_seen_[39m[38;5;124m"[39m)
+[1;32m--> 861[0m X [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_validate_data[49m[43m([49m
+[0;32m    862[0m [43m    [49m[43mX[49m[43m,[49m
+[0;32m    863[0m [43m    [49m[43maccept_sparse[49m[38;5;241;43m=[39;49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mcsr[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mcsc[39;49m[38;5;124;43m"[39;49m[43m)[49m[43m,[49m
+[0;32m    864[0m [43m    [49m[43mdtype[49m[38;5;241;43m=[39;49m[43mFLOAT_DTYPES[49m[43m,[49m
+[0;32m    865[0m [43m    [49m[43mforce_all_finite[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mallow-nan[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[0;32m    866[0m [43m    [49m[43mreset[49m[38;5;241;43m=[39;49m[43mfirst_call[49m[43m,[49m
+[0;32m    867[0m [43m[49m[43m)[49m
+[0;32m    868[0m n_features [38;5;241m=[39m X[38;5;241m.[39mshape[[38;5;241m1[39m]
+[0;32m    870[0m [38;5;28;01mif[39;00m sample_weight [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+File [1;32m~\AppData\Local\Programs\Python\Python310\lib\site-packages\sklearn\base.py:565[0m, in [0;36mBaseEstimator._validate_data[1;34m(self, X, y, reset, validate_separately, **check_params)[0m
+[0;32m    563[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124m"[39m[38;5;124mValidation should be done on X, y or both.[39m[38;5;124m"[39m)
+[0;32m    564[0m [38;5;28;01melif[39;00m [38;5;129;01mnot[39;00m no_val_X [38;5;129;01mand[39;00m no_val_y:
+[1;32m--> 565[0m     X [38;5;241m=[39m check_array(X, input_name[38;5;241m=[39m[38;5;124m"[39m[38;5;124mX[39m[38;5;124m"[39m, [38;5;241m*[39m[38;5;241m*[39mcheck_params)
+[0;32m    566[0m     out [38;5;241m=[39m X
+[0;32m    567[0m [38;5;28;01melif[39;00m no_val_X [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m no_val_y:
+
+File [1;32m~\AppData\Local\Programs\Python\Python310\lib\site-packages\sklearn\utils\validation.py:931[0m, in [0;36mcheck_array[1;34m(array, accept_sparse, accept_large_sparse, dtype, order, copy, force_all_finite, ensure_2d, allow_nd, ensure_min_samples, ensure_min_features, estimator, input_name)[0m
+[0;32m    929[0m     n_samples [38;5;241m=[39m _num_samples(array)
+[0;32m    930[0m     [38;5;28;01mif[39;00m n_samples [38;5;241m<[39m ensure_min_samples:
+[1;32m--> 931[0m         [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[0;32m    932[0m             [38;5;124m"[39m[38;5;124mFound array with [39m[38;5;132;01m%d[39;00m[38;5;124m sample(s) (shape=[39m[38;5;132;01m%s[39;00m[38;5;124m) while a[39m[38;5;124m"[39m
+[0;32m    933[0m             [38;5;124m"[39m[38;5;124m minimum of [39m[38;5;132;01m%d[39;00m[38;5;124m is required[39m[38;5;132;01m%s[39;00m[38;5;124m.[39m[38;5;124m"[39m
+[0;32m    934[0m             [38;5;241m%[39m (n_samples, array[38;5;241m.[39mshape, ensure_min_samples, context)
+[0;32m    935[0m         )
+[0;32m    937[0m [38;5;28;01mif[39;00m ensure_min_features [38;5;241m>[39m [38;5;241m0[39m [38;5;129;01mand[39;00m array[38;5;241m.[39mndim [38;5;241m==[39m [38;5;241m2[39m:
+[0;32m    938[0m     n_features [38;5;241m=[39m array[38;5;241m.[39mshape[[38;5;241m1[39m]
+
+[1;31mValueError[0m: Found array with 0 sample(s) (shape=(0, 10)) while a minimum of 1 is required by StandardScaler.
+ValueError: Found array with 0 sample(s) (shape=(0, 10)) while a minimum of 1 is required by StandardScaler.
+
