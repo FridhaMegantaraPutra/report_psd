@@ -6,5 +6,5 @@ root: intro
 chapters:
 - file: markdown
 - file: ori_lagi
-- file: notebooks
-- file: markdown-notebooks
+- file: pinguin
+
