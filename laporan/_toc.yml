@@ -4,7 +4,4 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: ori_lagi
-- file: pinguin
-
+  - file: pinguin
