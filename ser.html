@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="klasifikasi pinguin" href="pinguin.html" />
-    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+    <link rel="prev" title="Selamat datang di buku proyek saindata saya" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -154,7 +154,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Selamat datang di buku proyek saindata saya
                 </a>
             </li>
         </ul>
@@ -364,6 +364,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-knn">modeling KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-aplikasi">IMPLEMENTASI APLIKASI</a></li>
 </ul>
             </nav>
         </div>
@@ -504,43 +505,36 @@ dan 5 fitur = ZCR Mean,ZCR Median, ZCR Std Dev, ZCR Kurtosis, ZCR Skew</p>
 <span class="ne">----&gt; </span><span class="mi">6</span>     <span class="n">statistics</span> <span class="o">=</span> <span class="n">calculate_statistics</span><span class="p">(</span><span class="n">audio_path</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">]</span> <span class="o">+</span> <span class="n">statistics</span><span class="p">)</span>
 
-<span class="nn">Cell In[4], line 14,</span> in <span class="ni">calculate_statistics</span><span class="nt">(audio_path)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">q1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">q3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">14</span> <span class="n">mode_value</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">mode</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># Calculate mode</span>
+<span class="nn">Cell In[4], line 18,</span> in <span class="ni">calculate_statistics</span><span class="nt">(audio_path)</span>
 <span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">iqr</span> <span class="o">=</span> <span class="n">q3</span> <span class="o">-</span> <span class="n">q1</span>
 <span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="c1"># UNTUK MENGHITUNG NILAI ZCR</span>
+<span class="ne">---&gt; </span><span class="mi">18</span> <span class="n">zcr_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">zero_crossing_rate</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">zcr_median</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">zero_crossing_rate</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="n">zcr_std_dev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">librosa</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">zero_crossing_rate</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\stats\_axis_nan_policy.py:523,</span> in <span class="ni">_axis_nan_policy_factory.&lt;locals&gt;.axis_nan_policy_decorator.&lt;locals&gt;.axis_nan_policy_wrapper</span><span class="nt">(***failed resolving arguments***)</span>
-<span class="g g-Whitespace">    </span><span class="mi">521</span> <span class="k">if</span> <span class="n">sentinel</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span>     <span class="n">samples</span> <span class="o">=</span> <span class="n">_remove_sentinel</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">paired</span><span class="p">,</span> <span class="n">sentinel</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">523</span> <span class="n">res</span> <span class="o">=</span> <span class="n">hypotest_fun_out</span><span class="p">(</span><span class="o">*</span><span class="n">samples</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">524</span> <span class="n">res</span> <span class="o">=</span> <span class="n">result_to_tuple</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">525</span> <span class="n">res</span> <span class="o">=</span> <span class="n">_add_reduced_axes</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">reduced_axes</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\librosa\feature\spectral.py:1123,</span> in <span class="ni">zero_crossing_rate</span><span class="nt">(y, frame_length, hop_length, center, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1120</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;axis&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="g g-Whitespace">   </span><span class="mi">1121</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;pad&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1123</span> <span class="n">crossings</span> <span class="o">=</span> <span class="n">zero_crossings</span><span class="p">(</span><span class="n">y_framed</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1125</span> <span class="n">zcrate</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">crossings</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1126</span> <span class="k">return</span> <span class="n">zcrate</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\scipy\stats\_stats_py.py:517,</span> in <span class="ni">mode</span><span class="nt">(a, axis, nan_policy, keepdims)</span>
-<span class="g g-Whitespace">    </span><span class="mi">514</span>     <span class="n">NaN</span> <span class="o">=</span> <span class="n">_get_nan</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">515</span>     <span class="k">return</span> <span class="n">ModeResult</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">NaN</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">NaN</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">517</span> <span class="n">vals</span><span class="p">,</span> <span class="n">cnts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">518</span> <span class="n">modes</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">cnts</span><span class="o">.</span><span class="n">argmax</span><span class="p">()],</span> <span class="n">cnts</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">519</span> <span class="k">return</span> <span class="n">ModeResult</span><span class="p">(</span><span class="n">modes</span><span class="p">[()],</span> <span class="n">counts</span><span class="p">[()])</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\librosa\core\audio.py:1276,</span> in <span class="ni">zero_crossings</span><span class="nt">(y, threshold, ref_magnitude, pad, zero_pos, axis)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1273</span> <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1274</span> <span class="n">zi</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1276</span> <span class="n">_zc_wrapper</span><span class="p">(</span><span class="n">yi</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">zero_pos</span><span class="p">,</span> <span class="n">zi</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1278</span> <span class="n">zi</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">pad</span>
+<span class="g g-Whitespace">   </span><span class="mi">1280</span> <span class="k">return</span> <span class="n">z</span>
 
-<span class="nn">File &lt;__array_function__ internals&gt;:180,</span> in <span class="ni">unique</span><span class="nt">(*args, **kwargs)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\arraysetops.py:274,</span> in <span class="ni">unique</span><span class="nt">(ar, return_index, return_inverse, return_counts, axis, equal_nan)</span>
-<span class="g g-Whitespace">    </span><span class="mi">272</span> <span class="n">ar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">273</span> <span class="k">if</span> <span class="n">axis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">274</span>     <span class="n">ret</span> <span class="o">=</span> <span class="n">_unique1d</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span> <span class="n">return_index</span><span class="p">,</span> <span class="n">return_inverse</span><span class="p">,</span> <span class="n">return_counts</span><span class="p">,</span> 
-<span class="g g-Whitespace">    </span><span class="mi">275</span>                     <span class="n">equal_nan</span><span class="o">=</span><span class="n">equal_nan</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">276</span>     <span class="k">return</span> <span class="n">_unpack_tuple</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">278</span> <span class="c1"># axis was specified and not None</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\numpy\lib\arraysetops.py:336,</span> in <span class="ni">_unique1d</span><span class="nt">(ar, return_index, return_inverse, return_counts, equal_nan)</span>
-<span class="g g-Whitespace">    </span><span class="mi">334</span>     <span class="n">aux</span> <span class="o">=</span> <span class="n">ar</span><span class="p">[</span><span class="n">perm</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">335</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">336</span>     <span class="n">ar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">337</span>     <span class="n">aux</span> <span class="o">=</span> <span class="n">ar</span>
-<span class="g g-Whitespace">    </span><span class="mi">338</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python310\lib\site-packages\numba\np\ufunc\gufunc.py:171,</span> in <span class="ni">GUFunc.__call__</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span>     <span class="c1"># If compilation is disabled OR it is NOT a dynamic gufunc</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>     <span class="c1"># call the underlying gufunc</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frozen</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_dynamic</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">171</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ufunc</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">172</span>     <span class="k">elif</span> <span class="s2">&quot;out&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">173</span>         <span class="c1"># If &quot;out&quot; argument is supplied</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span>         <span class="n">args</span> <span class="o">+=</span> <span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;out&quot;</span><span class="p">),)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -1038,6 +1032,9 @@ Akurasi terbaik adalah 0.5160714285714286 dengan nilai k=25
 </div>
 </div>
 </section>
+<section id="implementasi-aplikasi">
+<h2><a class="reference external" href="https://reportpsd-8gbjpcfbrmxs3x5d49f6qe.streamlit.app/">IMPLEMENTASI APLIKASI</a><a class="headerlink" href="#implementasi-aplikasi" title="Permalink to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1074,7 +1071,7 @@ Akurasi terbaik adalah 0.5160714285714286 dengan nilai k=25
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+        <p class="prev-next-title">Selamat datang di buku proyek saindata saya</p>
       </div>
     </a>
     <a class="right-next"
@@ -1111,6 +1108,7 @@ Akurasi terbaik adalah 0.5160714285714286 dengan nilai k=25
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-knn">modeling KNN</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-aplikasi">IMPLEMENTASI APLIKASI</a></li>
 </ul>
   </nav></div>
 
